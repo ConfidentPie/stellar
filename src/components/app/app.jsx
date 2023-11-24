@@ -4,8 +4,10 @@ import './app.css';
 
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
+import { BURGER_API_URL } from '../../utils/burger-api';
 
-const API_ADDRESS = 'https://norma.nomoreparties.space/api/ingredients';
+
+const API_ADDRESS = `${BURGER_API_URL}/ingredients`;
 
 function App() {
   const [data, setData] = useState([]);

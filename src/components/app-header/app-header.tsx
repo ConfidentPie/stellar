@@ -22,8 +22,8 @@ function Header() {
                       </a>
                   </li>
                   <li className={appHeader.item}>
-                      <a className={`${appHeader.link} text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
-                      <ListIcon type='primary'/>
+                      <a className={`${appHeader.link} ${appHeader.active}  text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
+                      <ListIcon type='secondary'/>
                       <span className='pl-2'>Лента заказов</span>
                       </a>
                   </li>
@@ -31,8 +31,8 @@ function Header() {
           </nav>
           <Logo />
           <nav className={appHeader.user}>
-              <a className={`${appHeader.link} text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
-                <ProfileIcon type='primary'/>
+              <a className={`${appHeader.link}  ${appHeader.active} text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
+                <ProfileIcon type='secondary'/>
                 <span className='pl-2'>Личный кабинет</span>
               </a>
           </nav>
