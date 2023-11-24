@@ -1,0 +1,45 @@
+import React, { useState, useEffect } from 'react';
+import Header from '../app-header/app-header';
+import './app.css';
+
+import BurgerIngredients from '../burger-ingredients/burger-ingredients';
+import BurgerConstructor from '../burger-constructor/burger-constructor';
+
+const API_ADDRESS = 'https://norma.nomoreparties.space/api/ingredients';
+
+function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getProductData = async () => {
+      try {
+        const res = await fetch(API_ADDRESS);
+
+        if (!res.ok) {
+          throw new Error(
+            `Зпрос не выполнен. Ошибка при выполнении запроса: ${res.status}`
+          );
+        }
+
+        const data = await res.json();
+        setData(data.data);
+      } catch (error) {
+        console.error('Произошла ошибка при получении данных. Текст ошибки:', error.message);
+      }
+    };
+
+    getProductData();
+  }, []);
+
+  return (
+    <div className='App'>
+      <Header />
+      <main className='main'>
+        <BurgerIngredients ingredients={data} />
+        <BurgerConstructor />
+      </main>
+    </div>
+  );
+}
+
+export default App;

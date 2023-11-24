@@ -1,0 +1,21 @@
+.container {
+  max-width: 600px;
+  max-height: 100vh;
+
+}
+
+.list {
+  max-height: 464px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  overflow-y: scroll;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
