@@ -23,6 +23,7 @@ function BurgerConstructor({ingredients}) {
   const closeModal = () => {
     setModalOpen(false);
   };
+
   return (
     <>
       <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}>

@@ -14,6 +14,24 @@
   overflow-y: scroll;
 }
 
+.item {
+  margin-right: 8px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+}
+
+.top,
+.bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
 .total {
   display: flex;
   align-items: center;

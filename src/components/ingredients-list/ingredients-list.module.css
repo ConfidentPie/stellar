@@ -1,0 +1,14 @@
+.title {
+  margin: 0;
+  padding: 0;
+}
+
+.list {
+  margin-left: 16px;
+  margin-right: 8px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  list-style: none;
+}
