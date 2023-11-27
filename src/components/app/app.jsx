@@ -38,7 +38,7 @@ function App() {
       <Header />
       <main className='main'>
         <BurgerIngredients ingredients={data} />
-        <BurgerConstructor />
+        <BurgerConstructor  ingredients={data}/>
       </main>
     </div>
   );

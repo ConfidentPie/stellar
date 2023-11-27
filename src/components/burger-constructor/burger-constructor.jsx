@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { ingredientsArrayType } from '../../utils/prop-types';
 import burgerConstructor from './burger-constructor.module.css';
 import BurgerTop from '../burger-elements/burger-top';
 import BurgerBottom from '../burger-elements/burger-bottom';
-import PropTypes from 'prop-types';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 
@@ -12,22 +12,8 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerElements from '../burger-elements/burger-elements';
 
-BurgerConstructor.propTypes = {
-  _id: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  calories: PropTypes.number,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
-  __v: PropTypes.number,
-};
 
-function BurgerConstructor() {
+function BurgerConstructor({ingredients}) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -61,11 +47,15 @@ function BurgerConstructor() {
       </section>
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <OrderDetails onClose={closeModal} />
+          <OrderDetails />
         </Modal>
       )}
     </>
   );
 }
+
+BurgerConstructor.propTypes = {
+  ingredients: ingredientsArrayType,
+};
 
 export default BurgerConstructor;

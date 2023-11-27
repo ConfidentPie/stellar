@@ -25,7 +25,6 @@ const Modal = ({ children, onClose }) => {
       <ModalOverlay onClose={onClose} />
       <div
         className={modal.content}
-        onClick={(e) => e.stopPropagation()}
       >
         <button
           className={`${modal.close__button} mt-15 mr-10`}

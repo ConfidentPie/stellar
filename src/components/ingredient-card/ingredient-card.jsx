@@ -1,5 +1,6 @@
 import React from 'react';
 import ingredientCard from './ingredient-card.module.css';
+import { ingredientsType } from '../../utils/prop-types';
 import {
   CurrencyIcon,
   Counter
@@ -25,6 +26,10 @@ const IngredientCard = ({ ingredient, onCardClick }) => {
       <p className={`${ingredientCard.name} text text_type_main-default`}>{name}</p>
     </div>
   );
+};
+
+IngredientCard.propTypes = {
+  ingredient: ingredientsType.isRequired,
 };
 
 export default IngredientCard;
