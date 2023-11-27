@@ -36,7 +36,7 @@ function BurgerConstructor({ingredients}) {
   return (
     <>
       <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}>
-      <div className={`${burgerConstructor.element} mb-4 mr-4`}>
+      <div className={`${burgerConstructor.top} mb-4 mr-4`}>
           <ConstructorElement
             type="top"
             isLocked={true}
@@ -45,14 +45,14 @@ function BurgerConstructor({ingredients}) {
             thumbnail={bun.image}
           />
         </div>
-        <ul className={burgerConstructor.list}>
+        <ul className={`${burgerConstructor.list} custom-scroll`}>
           {nonBunIngredients.map((item, index) => (
             <li className={`${burgerConstructor.item} mb-4 mr-2`} key={index}>
              <BurgerIngredient key={index} item={item} />
             </li>
           ))}
         </ul>
-        <div className={`${burgerConstructor.element} mt-4 mr-4`}>
+        <div className={`${burgerConstructor.botom} mt-4 mr-4`}>
           <ConstructorElement
             type="bottom"
             isLocked={true}

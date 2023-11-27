@@ -8,6 +8,8 @@ import { getIngredients } from '../../utils/burger-api';
 
 function App() {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const getProductData = async () => {
@@ -16,6 +18,8 @@ function App() {
         setData(ingredientsData.data);
       } catch (error) {
         console.error('Произошла ошибка при получении данных. Текст ошибки:', error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -26,8 +30,14 @@ function App() {
     <div className='App'>
       <Header />
       <main className='main'>
-        <BurgerIngredients ingredients={data} />
-        <BurgerConstructor  ingredients={data}/>
+      {isLoading ? (
+          <p>Магия...</p>
+        ) : (
+          <>
+            <BurgerIngredients ingredients={data} />
+            <BurgerConstructor ingredients={data} />
+          </>
+        )}
       </main>
     </div>
   );
