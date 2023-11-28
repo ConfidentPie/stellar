@@ -1,6 +1,6 @@
 import React from 'react';
 import ingredientCard from './ingredient-card.module.css';
-import { ingredientsType } from '../../utils/prop-types';
+import { cardClickType, IngredientType } from '../../utils/prop-types';
 import {
   CurrencyIcon,
   Counter
@@ -29,7 +29,8 @@ const IngredientCard = ({ ingredient, onCardClick }) => {
 };
 
 IngredientCard.propTypes = {
-  ingredient: ingredientsType.isRequired,
+  ingredient: IngredientType,
+  onCardClick: cardClickType,
 };
 
 export default IngredientCard;

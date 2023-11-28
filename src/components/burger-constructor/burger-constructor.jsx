@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ingredientsArrayType } from '../../utils/prop-types';
 import burgerConstructor from './burger-constructor.module.css';
-// import BurgerTop from '../burger-elements/burger-top';
-// import BurgerBottom from '../burger-elements/burger-bottom';
+
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 

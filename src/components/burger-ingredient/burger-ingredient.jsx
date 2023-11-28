@@ -1,4 +1,5 @@
 import React from 'react';
+import { itemType } from '../../utils/prop-types';
 import burgersIngredient from './burger-ingredient.module.css';
 import {
   ConstructorElement,
@@ -6,7 +7,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
-const BurgerElements = ({item}) => {
+const BurgerIngredient = ({item}) => {
   return (
     <>
       <DragIcon />
@@ -21,4 +22,8 @@ const BurgerElements = ({item}) => {
   );
 };
 
-export default BurgerElements;
+burgersIngredient.propTypes = {
+  item: itemType,
+};
+
+export default BurgerIngredient;

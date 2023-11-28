@@ -1,4 +1,5 @@
 import React, { useEffect  } from 'react';
+import  {modalCloseType, childrenType } from '../../utils/prop-types';
 import ReactDOM from 'react-dom';
 import modal from './modal.module.css';
 import ModalOverlay from '../modal-overlay/modal-overlay';
@@ -36,6 +37,11 @@ const Modal = ({ children, onClose }) => {
       </div>
     </>, modalRoot
   )
+};
+
+Modal.propTypes = {
+  onClose: modalCloseType,
+  children: childrenType,
 };
 
 export default Modal;
