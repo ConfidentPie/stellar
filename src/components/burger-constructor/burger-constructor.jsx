@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ingredientsArrayType } from '../../utils/prop-types';
+import { ingredientArrayType } from '../../utils/prop-types';
 import burgerConstructor from './burger-constructor.module.css';
 
 import Modal from '../modal/modal';
@@ -84,7 +84,7 @@ function BurgerConstructor({ingredients}) {
 }
 
 BurgerConstructor.propTypes = {
-  ingredients: ingredientsArrayType,
+  ingredients: ingredientArrayType,
 };
 
 export default BurgerConstructor;

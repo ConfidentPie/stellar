@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-  export const ingredientsType = PropTypes.shape({
+  export const ingredientType = PropTypes.shape({
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
@@ -15,32 +15,4 @@ import PropTypes from 'prop-types';
     __v: PropTypes.number.isRequired,
   });
 
-  export const cardClickType = PropTypes.shape({
-    onCardClick: PropTypes.func.isRequired,
-  });
-
-  export const titleType = PropTypes.shape({
-    title: PropTypes.string.isRequired,
-  })
-
-  export const IngredientType = PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-  });
-
-  export const itemType = PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-  })
-
-  export const modalCloseType = PropTypes.shape ({
-    onClose: PropTypes.func.isRequired,
-  })
-
-  export const childrenType = PropTypes.shape({
-    children: PropTypes.element.isRequired,
-  })
-
-  export const ingredientsArrayType = PropTypes.arrayOf(ingredientsType.isRequired).isRequired;
+  export const ingredientArrayType = PropTypes.arrayOf(ingredientType.isRequired).isRequired;

@@ -1,5 +1,6 @@
 import React from 'react';
-import { itemType } from '../../utils/prop-types';
+import PropTypes from 'prop-types';
+
 import burgersIngredient from './burger-ingredient.module.css';
 import {
   ConstructorElement,
@@ -23,7 +24,7 @@ const BurgerIngredient = ({item}) => {
 };
 
 burgersIngredient.propTypes = {
-  item: itemType,
+  item: PropTypes.object.isRequired
 };
 
 export default BurgerIngredient;

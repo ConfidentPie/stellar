@@ -1,7 +1,8 @@
 import React from 'react';
 import IngredientCard from '../ingredient-card/ingredient-card';
 import ingredientsGroup from './ingredients-group.module.css'
-import { cardClickType, ingredientsArrayType, titleType } from '../../utils/prop-types';
+import PropTypes from 'prop-types';
+import { ingredientArrayType } from '../../utils/prop-types';
 
 
 const IngredientsGroup = ({ title, ingredients, onCardClick }) => {
@@ -21,9 +22,9 @@ const IngredientsGroup = ({ title, ingredients, onCardClick }) => {
   };
 
   IngredientsGroup.propTypes = {
-    ingredients: ingredientsArrayType,
-    onCardClick: cardClickType,
-    title: titleType,
+    ingredients: ingredientArrayType,
+    onCardClick: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
   };
 
 export default IngredientsGroup;
