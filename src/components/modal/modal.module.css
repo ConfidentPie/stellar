@@ -1,0 +1,18 @@
+.content {
+  position: absolute;
+  border-radius: 40px;
+  background-color: #1C1C21;
+  top: 15%;
+  left: 35%;
+  z-index: 2;
+}
+
+.close__button {
+  position: absolute;
+  padding: 0;
+  right: 0;
+  top: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
