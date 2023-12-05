@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { setBun, setIngredients } from '../../services/burger-constructor/burger-constructor-slice';
 import { selectBun, selectIngredients } from '../../services/burger-constructor/selectors';
 import { saveOrderNumber } from '../../services/order/order-slice';
+import { sendOrder } from '../../utils/burger-api';
 
 function BurgerConstructor() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -24,6 +25,15 @@ function BurgerConstructor() {
   const bun = useSelector(selectBun);
   const ingredients = useSelector(selectIngredients);
 
+  const handleOrderButtonClick = async () => {
+    try {
+      const ingredientIds = ingredients.map((ingredient) => ingredient._id);
+      const orderData = await sendOrder(ingredientIds);
+      dispatch(saveOrderNumber(orderData.order.number));
+      openModal();
+    } catch (error) {
+    }
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -86,7 +96,7 @@ function BurgerConstructor() {
             htmlType='button'
             type='primary'
             size='medium'
-            onClick={openModal}
+            onClick={handleOrderButtonClick}
           >
             Оформить заказ
           </Button>
