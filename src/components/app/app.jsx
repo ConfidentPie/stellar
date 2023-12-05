@@ -10,7 +10,6 @@ import { setIngredients } from '../../services/burger-constructor/burger-constru
 
 
 function App() {
-  // const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
