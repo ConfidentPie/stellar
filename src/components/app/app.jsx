@@ -39,7 +39,7 @@ function App() {
         ) : (
           <>
             <BurgerIngredients />
-            {/* <BurgerConstructor /> */}
+            <BurgerConstructor />
           </>
         )}
       </main>

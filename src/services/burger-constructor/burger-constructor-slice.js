@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const burgerSlice = createSlice({
-    name: 'burger',
+export const burgerConstructorSlice = createSlice({
+    name: 'burgerConstructor',
     initialState: {
         bunTop: null,
         bunBottom: null,
         ingredients: [],
     },
     reducers: {
-        setBun: (state, action) => {
-            state[action.payload.position] = action.payload;
+        setBunTop: (state, action) => {
+            state.bunTop = action.payload;
+        },
+        setBunBottom: (state, action) => {
+            state.bunBottom = action.payload;
         },
         setIngredients: (state, action) => {
             state.ingredients = action.payload;
@@ -17,5 +20,5 @@ export const burgerSlice = createSlice({
     },
 });
 
-export const { setBun, setIngredients } = burgerSlice.actions;
-export default burgerSlice.reducer;
+export const { setBunTop, setBunBottom, setIngredients } = burgerConstructorSlice.actions;
+export default burgerConstructorSlice.reducer;
