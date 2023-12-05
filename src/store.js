@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import BurgerReducer from './services/burger-constructor/burger-constructor-slice';
+import BurgerConstructorReducer from './services/burger-constructor/burger-constructor-slice';
 import BurgerIngredientsReducer from './services/burger-ingredients/burger-ingredients-slice';
+import OrderReducer from './services/order/order-slice'
+
 
 const store = configureStore({
     reducer: {
-        burger: BurgerReducer,
+        burger: BurgerConstructorReducer,
         burgerIngredients: BurgerIngredientsReducer,
-
+        order: OrderReducer,
     },
 });
 
