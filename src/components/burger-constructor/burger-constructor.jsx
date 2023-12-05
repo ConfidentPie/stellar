@@ -20,12 +20,12 @@ function BurgerConstructor() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
-  const bunTop = useSelector(selectBunTop);
-  const bunBottom = useSelector(selectBunBottom);;
-  const ingredients = useSelector(selectIngredients);
+  // const bunTop = useSelector(selectBunTop);
+  // const bunBottom = useSelector(selectBunBottom);
+  // const ingredients = useSelector(selectIngredients);
 
 
-  const openModal = () => {
+  const handleOrderClick = () => {
     setModalOpen(true);
   };
 
@@ -33,23 +33,23 @@ function BurgerConstructor() {
     setModalOpen(false);
   };
 
-  const { bun, ingredients: nonBunIngredients } = useMemo(() => {
-    return {
-      bun: ingredients.find((item) => item.type === 'bun'),
-      ingredients: ingredients.filter((item) => item.type !== 'bun'),
-    };
-  }, [ingredients]);
+  // const { bun, ingredients: nonBunIngredients } = useMemo(() => {
+  //   return {
+  //     bun: ingredients.find((item) => item.type === 'bun'),
+  //     ingredients: ingredients.filter((item) => item.type !== 'bun'),
+  //   };
+  // }, [ingredients]);
 
-  useEffect(() => {
-    const ingredientsPrice = nonBunIngredients.reduce((acc, item) => acc + item.price, 0);
-    const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
-    setTotalPrice(total);
-  }, [bun, nonBunIngredients]);
+  // useEffect(() => {
+  //   const ingredientsPrice = nonBunIngredients.reduce((acc, item) => acc + item.price, 0);
+  //   const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
+  //   setTotalPrice(total);
+  // }, [bun, nonBunIngredients]);
 
   return (
     <>
       <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}>
-      <div className={`${burgerConstructor.top} mb-4 mr-4`}>
+      {/* <div className={`${burgerConstructor.top} mb-4 mr-4`}>
       {bunTop && (
             <ConstructorElement
               type="top"
@@ -77,7 +77,7 @@ function BurgerConstructor() {
               thumbnail={bunBottom.image}
             />
           )}
-        </div>
+        </div> */}
         <div className={`${burgerConstructor.total} mt-10`}>
           <p className='text text_type_digits-medium mr-10'>
           {totalPrice} <CurrencyIcon type='primary' />
@@ -86,7 +86,7 @@ function BurgerConstructor() {
             htmlType='button'
             type='primary'
             size='medium'
-            onClick={openModal}
+            onClick={handleOrderClick}
           >
             Оформить заказ
           </Button>
