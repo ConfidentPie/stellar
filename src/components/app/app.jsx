@@ -35,7 +35,7 @@ function App() {
         ) : (
           <>
             <BurgerIngredients ingredients={data} />
-            <BurgerConstructor ingredients={data} />
+            <BurgerConstructor />
           </>
         )}
       </main>

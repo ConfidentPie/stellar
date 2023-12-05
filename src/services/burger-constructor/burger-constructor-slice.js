@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const BurgerSlice = createSlice({
+export const burgerSlice = createSlice({
     name: 'burger',
     initialState: {
         bunTop: null,
@@ -17,5 +17,5 @@ const BurgerSlice = createSlice({
     },
 });
 
-export const { setBun, setIngredients } = BurgerSlice.actions;
-export default BurgerSlice.reducer;
+export const { setBun, setIngredients } = burgerSlice.actions;
+export default burgerSlice.reducer;

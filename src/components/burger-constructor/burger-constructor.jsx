@@ -12,10 +12,17 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setBun, setIngredients } from '../../services/burger-constructor/burger-constructor-slice';
 
-function BurgerConstructor({ingredients}) {
+function BurgerConstructor() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const dispatch = useDispatch();
+  const bunTop = useSelector((state) => state.burger.bunTop);
+  const bunBottom = useSelector((state) => state.burger.bunBottom);
+  const ingredients = useSelector ((state) => state.burger.ingredients);
+
 
   const openModal = () => {
     setModalOpen(true);
