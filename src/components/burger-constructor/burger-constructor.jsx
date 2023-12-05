@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ingredientArrayType } from '../../utils/prop-types';
 import burgerConstructor from './burger-constructor.module.css';
 
@@ -15,6 +15,7 @@ import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
 function BurgerConstructor({ingredients}) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const openModal = () => {
     setModalOpen(true);
@@ -31,6 +32,11 @@ function BurgerConstructor({ingredients}) {
     };
   }, [ingredients]);
 
+  useEffect(() => {
+    const ingredientsPrice = nonBunIngredients.reduce((acc, item) => acc + item.price, 0);
+    const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
+    setTotalPrice(total);
+  }, [bun, nonBunIngredients]);
 
   return (
     <>
@@ -62,7 +68,7 @@ function BurgerConstructor({ingredients}) {
         </div>
         <div className={`${burgerConstructor.total} mt-10`}>
           <p className='text text_type_digits-medium mr-10'>
-            610 <CurrencyIcon type='primary' />
+          {totalPrice} <CurrencyIcon type='primary' />
           </p>
           <Button
             htmlType='button'
