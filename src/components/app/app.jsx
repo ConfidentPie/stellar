@@ -4,18 +4,22 @@ import './app.css';
 
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
+import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../utils/burger-api';
+import { setIngredients } from '../../services/burger-constructor/burger-constructor-slice';
+
 
 function App() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
     const getProductData = async () => {
       try {
         const ingredientsData = await getIngredients();
-        setData(ingredientsData.data);
+        dispatch(setIngredients(ingredientsData.data));
       } catch (error) {
         console.error('Произошла ошибка при получении данных. Текст ошибки:', error.message);
       } finally {
@@ -24,7 +28,7 @@ function App() {
     };
 
     getProductData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='App'>
@@ -34,8 +38,8 @@ function App() {
           <p>Магия...</p>
         ) : (
           <>
-            <BurgerIngredients ingredients={data} />
-            <BurgerConstructor />
+            <BurgerIngredients />
+            {/* <BurgerConstructor /> */}
           </>
         )}
       </main>

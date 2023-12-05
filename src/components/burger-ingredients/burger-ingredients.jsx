@@ -5,11 +5,15 @@ import IngredientsGroup from '../ingredients-group/ingredients-group';
 import Tabs from '../tabs/tabs';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import { useSelector } from 'react-redux';
 
 
-function BurgerIngredients({ ingredients }) {
+
+function BurgerIngredients() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [choosenIngredient, setChoosenIngredient] = useState(null);
+
+  const ingredients = useSelector((state) => state.burger.ingredients);
 
   const groupedIngredients = useMemo(() => {
     return ingredients.reduce((acc, ingredient) => {
