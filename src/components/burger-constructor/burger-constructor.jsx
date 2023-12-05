@@ -13,15 +13,16 @@ import {
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setBun, setIngredients } from '../../services/burger-constructor/burger-constructor-slice';
+// import { setBun, setIngredients } from '../../services/burger-constructor/burger-constructor-slice';
 import { selectBun, selectIngredients } from '../../services/burger-constructor/selectors';
+import { saveOrderNumber } from '../../services/order/order-slice';
 
 function BurgerConstructor() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
-  // const bun = useSelector(selectBun);
-  // const ingredients = useSelector(selectIngredients);
+  const bun = useSelector(selectBun);
+  const ingredients = useSelector(selectIngredients);
 
 
   const openModal = () => {
@@ -39,17 +40,17 @@ function BurgerConstructor() {
   //   };
   // }, [ingredients]);
 
-  // useEffect(() => {
-  //   const ingredientsPrice = nonBunIngredients.reduce((acc, item) => acc + item.price, 0);
-  //   const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
-  //   setTotalPrice(total);
-  // }, [bun, nonBunIngredients]);
+  useEffect(() => {
+    const ingredientsPrice = ingredients.reduce((acc, item) => acc + item.price, 0);
+    const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
+    setTotalPrice(total);
+  }, [bun, ingredients]);
 
   return (
     <>
       <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}>
       <div className={`${burgerConstructor.top} mb-4 mr-4`}>
-      {/* {bun && (
+      {bun && (
             <ConstructorElement
               type="top"
               isLocked={true}
@@ -57,17 +58,17 @@ function BurgerConstructor() {
               price={bun.price}
               thumbnail={bun.image}
             />
-          )} */}
+          )}
         </div>
         <ul className={`${burgerConstructor.list} custom-scroll`}>
-          {/* {nonBunIngredients.map((item, index) => (
+          {ingredients.map((item, index) => (
             <li className={`${burgerConstructor.item} mb-4 mr-2`} key={index}>
              <BurgerIngredient key={index} item={item} />
             </li>
-          ))} */}
+          ))}
         </ul>
         <div className={`${burgerConstructor.botom} mt-4 mr-4`}>
-        {/* {bun && (
+        {bun && (
             <ConstructorElement
               type="bottom"
               isLocked={true}
@@ -75,7 +76,7 @@ function BurgerConstructor() {
               price={bun.price}
               thumbnail={bun.image}
             />
-          )} */}
+          )}
         </div>
         <div className={`${burgerConstructor.total} mt-10`}>
           <p className='text text_type_digits-medium mr-10'>
