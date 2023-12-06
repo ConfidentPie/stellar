@@ -6,7 +6,7 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../utils/burger-api';
-import { setIngredients } from '../../services/burger-constructor/burger-constructor-slice';
+import { setIngredients } from '../../services/burger-ingredients/burger-ingredients-slice';
 
 
 function App() {
