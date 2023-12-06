@@ -27,11 +27,13 @@ function BurgerConstructor() {
 
     const handleOrderButtonClick = async () => {
       try {
-        const ingredientIds = ingredients.map((ingredient) => ingredient._id);
-        const orderData = await sendOrder(ingredientIds);
+        // const ingredientIds = ingredients.map((ingredient) => ingredient._id);
+        const orderData = await sendOrder(['643d69a5c3f7b9001cfa093c', '643d69a5c3f7b9001cfa093c', "643d69a5c3f7b9001cfa0941" ]);
         dispatch(saveOrderNumber(orderData.order.number));
-        // openModal();
+        openModal();
+
       } catch (error) {
+        console.log(error, 'handle')
       }
     };
 
@@ -77,7 +79,7 @@ function BurgerConstructor() {
             </li>
           ))}
         </ul>
-        <div className={`${burgerConstructor.botom} mt-4 mr-4`}>
+        <div className={`${burgerConstructor.bottom} mt-4 mr-4`}>
         {bun && (
             <ConstructorElement
               type="bottom"
