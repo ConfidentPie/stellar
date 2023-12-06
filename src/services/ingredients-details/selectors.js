@@ -1,0 +1,1 @@
+export const selectIngredientDetails = (state) => state.details.ingredientDetails;

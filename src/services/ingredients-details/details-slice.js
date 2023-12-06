@@ -13,3 +13,4 @@ export const detailsSlice = createSlice({
 });
 
 export const { getIngredientDetails } = detailsSlice.actions;
+export default detailsSlice.reducer;
