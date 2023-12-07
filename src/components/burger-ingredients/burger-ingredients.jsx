@@ -16,7 +16,7 @@ function BurgerIngredients() {
 
   const ingredients = useSelector(selectIngredients);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const groupedIngredients = useMemo(() => {
     return ingredients.reduce((acc, ingredient) => {

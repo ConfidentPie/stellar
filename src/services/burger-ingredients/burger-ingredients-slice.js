@@ -12,5 +12,5 @@ export const burgerIngredientsSlice = createSlice({
     }
 })
 
-export const { setIngredients } = burgerIngredientsSlice.actions;
+export const { setIngredients, addIngredient, removeIngredient } = burgerIngredientsSlice.actions;
 export default burgerIngredientsSlice.reducer;
