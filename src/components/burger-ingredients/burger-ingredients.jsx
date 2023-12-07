@@ -6,6 +6,7 @@ import Tabs from '../tabs/tabs';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import { useSelector, useDispatch } from 'react-redux';
+import { selectIngredients } from '../../services/burger-ingredients/selectors';
 
 
 
@@ -13,7 +14,8 @@ function BurgerIngredients() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [choosenIngredient, setChoosenIngredient] = useState(null);
 
-  const ingredients = useSelector((state) => state.burgerIngredients.ingredients);
+  const ingredients = useSelector(selectIngredients);
+
   const dispatch = useDispatch();
 
   const groupedIngredients = useMemo(() => {

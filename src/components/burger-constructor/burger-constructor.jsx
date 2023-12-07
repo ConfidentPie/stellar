@@ -28,7 +28,7 @@ function BurgerConstructor() {
     const handleOrderButtonClick = async () => {
       try {
         // const ingredientIds = ingredients.map((ingredient) => ingredient._id);
-        const orderData = await sendOrder(['643d69a5c3f7b9001cfa093c', '643d69a5c3f7b9001cfa093c', "643d69a5c3f7b9001cfa0941" ]);
+        const orderData = await sendOrder(["643d69a5c3f7b9001cfa093c","609646e4dc916e00276b2870", "643d69a5c3f7b9001cfa093c"]);
         dispatch(saveOrderNumber(orderData.order.number));
         openModal();
 
@@ -62,6 +62,7 @@ function BurgerConstructor() {
     <>
       <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}>
       <div className={`${burgerConstructor.top} mb-4 mr-4`}>
+        Добавьте свою булочку сюда
       {bun && (
             <ConstructorElement
               type="top"
@@ -73,6 +74,7 @@ function BurgerConstructor() {
           )}
         </div>
         <ul className={`${burgerConstructor.list} custom-scroll`}>
+        Добавьте понравившиеся ингредиенты
           {ingredients.map((item, index) => (
             <li className={`${burgerConstructor.item} mb-4 mr-2`} key={index}>
              <BurgerIngredient key={index} item={item} />
@@ -80,6 +82,7 @@ function BurgerConstructor() {
           ))}
         </ul>
         <div className={`${burgerConstructor.bottom} mt-4 mr-4`}>
+          Добавьте свою булочку сюда
         {bun && (
             <ConstructorElement
               type="bottom"

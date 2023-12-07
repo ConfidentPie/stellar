@@ -10,6 +10,7 @@ export const getIngredients = async () => {
 export const sendOrder = async (ingredientIds) => {
     const res = await fetch(`${BURGER_API_URL}/orders`, {
         method: 'POST',
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             ingredients: ingredientIds,
           })
