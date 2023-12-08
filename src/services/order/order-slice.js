@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
+import { createOrder } from './actions';
 
 export const orderSlice = createSlice({
   name: 'order',
@@ -6,11 +7,16 @@ export const orderSlice = createSlice({
     orderNumber: null,
   },
   reducers: {
-    saveOrderNumber: (state, action) => {
-      state.orderNumber = action.payload;
-    },
+    clearOrder(state) {
+      state.order = null;
+    }
   },
+  extraReducers: (builder) => {
+    builder.addCase(createOrder.fulfilled, (state, action) => {
+      state.order = action.payload
+    })
+  }
 });
 
-export const { saveOrderNumber } = orderSlice.actions;
+export const {clearOrder} = orderSlice.actions;
 export default orderSlice.reducer;

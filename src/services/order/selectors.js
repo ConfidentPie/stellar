@@ -1,1 +1,1 @@
-export const selectOrderNumber = (state) => state.order.orderNumber;
+export const selectOrder = (state) => state.order.order;
