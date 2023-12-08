@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice, nanoid} from '@reduxjs/toolkit';
 
 export const burgerConstructorSlice = createSlice({
     name: 'burgerConstructor',
@@ -10,17 +10,25 @@ export const burgerConstructorSlice = createSlice({
         setBun: (state, action) => {
             state.chosenBun = action.payload;
         },
-        setIngredients: (state, action) => {
-            state.chosenIngredients = action.payload;
+        clearBurger: (state) => {
+            state.chosenBun = null;
+            state.chosenIngredients = [];
         },
-        addIngredient: (state, action) => {
-            state.chosenIngredients.push(action.payload);
-          },
-          removeIngredient: (state, action) => {
-            state.draggedIngredients = state.draggedIngredients.filter(i => i.id !== action.payload._id);
-          },
+        addIngredient: {
+            reducer: (state, action) => {
+                state.chosenIngredients.push(action.payload);
+            },
+            prepare: (ingredient) => {
+                const key = nanoid();
+                return {payload: {...ingredient, key}};
+            }
+        },
+        removeIngredient: (state, action) => {
+            state.chosenIngredients = state.chosenIngredients.filter(i => i.key !== action.payload);
+        },
     },
-});
+})
+    ;
 
-export const { setBun, setIngredients, addIngredient, removeIngredient } = burgerConstructorSlice.actions;
+export const {setBun, clearBurger, addIngredient, removeIngredient} = burgerConstructorSlice.actions;
 export default burgerConstructorSlice.reducer;

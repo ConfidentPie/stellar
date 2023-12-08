@@ -9,7 +9,7 @@ import { getIngredients } from '../../utils/burger-api';
 import { setIngredients } from '../../services/burger-ingredients/burger-ingredients-slice';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
+import { }
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
