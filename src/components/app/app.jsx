@@ -4,39 +4,29 @@ import './app.css';
 
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { useDispatch } from 'react-redux';
-import { getIngredients } from '../../utils/burger-api';
-import { setIngredients } from '../../services/burger-ingredients/burger-ingredients-slice';
+import { useDispatch, useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { }
+import { loadIngredients } from '../../services/burger-ingredients/actions';
+import { burgerIngredients } from '../../services/burger-ingredients/selectors';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const {loading, error, ingredients} = useSelector(burgerIngredients);
   const dispatch = useDispatch();
 
 
   useEffect(() => {
-    const getProductData = async () => {
-      try {
-        const ingredientsData = await getIngredients();
-        dispatch(setIngredients(ingredientsData.data));
-      } catch (error) {
-        console.error('Произошла ошибка при получении данных. Текст ошибки:', error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getProductData();
-  }, [dispatch]);
+    dispatch(loadIngredients());
+    }, [dispatch]);
 
   return (
     <div className='App'>
       <Header />
       <main className='main'>
-      {isLoading ? (
+      {loading ? (
           <p>Магия...</p>
+        ) : error ? (
+          <p>Не удалось загрузить ингредиенты: {error}</p>
         ) : (
           <>
             <DndProvider backend={HTML5Backend}>
