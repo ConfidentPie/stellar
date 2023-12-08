@@ -12,7 +12,7 @@ import {
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setBun, addIngredient } from '../../services/burger-constructor/burger-constructor-slice';
+import { set Bun, addIngredient } from '../../services/burger-constructor/burger-constructor-slice';
 import { selectBun, selectIngredients } from '../../services/burger-constructor/selectors';
 import { saveOrderNumber } from '../../services/order/order-slice';
 import { sendOrder } from '../../utils/burger-api';
@@ -52,17 +52,17 @@ function BurgerConstructor() {
   // }, [ingredients]);
 
   useEffect(() => {
-    const ingredientsPrice = ingredients.reduce(
-      (acc, item) => acc + item.price,
-      0
-    );
-    const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
-    setTotalPrice(total);
+  //   const ingredientsPrice = ingredients.reduce(
+  //     (acc, item) => acc + item.price,
+  //     0
+  //   );
+  //   const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
+  //   setTotalPrice(total);
   }, [bun, ingredients]);
 
      const [, drop] = useDrop(() => ({
       accept: 'ingredient',
-      drop(ingredient) {ingredient = {...ingredient}},
+      drop(ingredient) {dispatch(addIngredient())},
     }))
 
   return (

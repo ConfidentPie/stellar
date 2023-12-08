@@ -13,11 +13,13 @@ const BurgerIngredient = ({item}) => {
     <>
       <DragIcon />
       <div className={`${burgersIngredient.item} ml-2`}>
-        <ConstructorElement
-          text={item.name}
-          price={item.price}
-          thumbnail={item.image}
-        />
+      {item && (
+          <ConstructorElement
+            text={item.name}
+            price={item.price}
+            thumbnail={item.image}
+          />
+        )}
       </div>
     </>
   );

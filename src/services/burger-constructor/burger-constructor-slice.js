@@ -14,7 +14,7 @@ export const burgerConstructorSlice = createSlice({
             state.chosenIngredients = action.payload;
         },
         addIngredient: (state, action) => {
-            state.draggedIngredients.push(action.payload);
+            state.chosenIngredients.push(action.payload);
           },
           removeIngredient: (state, action) => {
             state.draggedIngredients = state.draggedIngredients.filter(i => i.id !== action.payload._id);
