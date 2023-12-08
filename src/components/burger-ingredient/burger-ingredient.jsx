@@ -56,9 +56,9 @@ const BurgerIngredient = ({ item, index }) => {
   drag(drop(ref));
 
   return (
-    <div style={{opacity: isDragging? 0 : 1}} ref={ref}>
+    <li className={burgersIngredient.item} style={{opacity: isDragging? 0 : 1}} ref={ref}>
       <DragIcon />
-      <div className={`${burgersIngredient.item} ml-2`}>
+      <div className={`${burgersIngredient.info} ml-2`}>
         {item && (
           <ConstructorElement
             text={item.name}
@@ -68,7 +68,7 @@ const BurgerIngredient = ({ item, index }) => {
           />
         )}
       </div>
-    </div>
+    </li>
   );
 };
 

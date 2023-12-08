@@ -1,4 +1,8 @@
 .item {
+    flex-direction: column;
+}
+
+.info {
     width: 100%;
     margin-right: 8px;
     display: flex;

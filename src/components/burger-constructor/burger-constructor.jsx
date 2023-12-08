@@ -57,7 +57,6 @@ function BurgerConstructor() {
       <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`} >
         <ul className={`${burgerConstructor.list} custom-scroll`} ref={drop}>
         <div className={`${burgerConstructor.top} mb-4 mr-4`} >
-          Добавьте свою булочку сюда
           {bun && (
             <ConstructorElement
               type='top'
@@ -68,14 +67,12 @@ function BurgerConstructor() {
             />
           )}
         </div>
-          Добавьте понравившиеся ингредиенты
-            <li className={`${burgerConstructor.item} mb-4 mr-2`}>
+            <div className={`${burgerConstructor.item} mb-4 mr-2`}>
           {ingredients.map((item, index) => (
               <BurgerIngredient key={item.key} item={item} index={index}/>
               ))}
-            </li>
+            </div>
           <div className={`${burgerConstructor.bottom} mt-4 mr-4`}>
-          Добавьте свою булочку сюда
           {bun && (
             <ConstructorElement
               type='bottom'
