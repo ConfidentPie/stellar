@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect} from 'react';
-import { ingredientArrayType } from '../../utils/prop-types';
 import burgerConstructor from './burger-constructor.module.css';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
@@ -12,57 +11,45 @@ import {
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { set Bun, addIngredient } from '../../services/burger-constructor/burger-constructor-slice';
+import { setBun, addIngredient, clearBurger } from '../../services/burger-constructor/burger-constructor-slice';
 import { selectBun, selectIngredients } from '../../services/burger-constructor/selectors';
-import { saveOrderNumber } from '../../services/order/order-slice';
-import { sendOrder } from '../../utils/burger-api';
+import { createOrder } from '../../services/order/actions';
+import { selectOrder } from '../../services/order/selectors';
+import { clearOrder } from '../../services/order/order-slice';
 
 function BurgerConstructor() {
-
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const dispatch = useDispatch();
+  const order = useSelector(selectOrder);
   const bun = useSelector(selectBun);
   const ingredients = useSelector(selectIngredients);
+  const dispatch = useDispatch();
 
-  const createOrder = async () => {
-    try {
-      const ingredientIds = ingredients.map((ingredient) => ingredient._id);
-      const orderData = await sendOrder([ingredientIds]);
-      dispatch(saveOrderNumber(orderData.order.number));
-      openModal();
-    } catch (error) {
-      console.log(error, 'handle');
-    }
-  };
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
+  const handleCreateOrder = () => {
+    const ingredientIds = ingredients.map((ingredient) => ingredient._id);
+    dispatch(createOrder(ingredientIds));
+  }
 
   const closeModal = () => {
-    setModalOpen(false);
+    dispatch(clearOrder());
+    dispatch(clearBurger());
   };
 
-  // const { bun, ingredients: nonBunIngredients } = useMemo(() => {
-  //   return {
-  //     bun: ingredients.find((item) => item.type === 'bun'),
-  //     ingredients: ingredients.filter((item) => item.type !== 'bun'),
-  //   };
-  // }, [ingredients]);
-
-  useEffect(() => {
-  //   const ingredientsPrice = ingredients.reduce(
-  //     (acc, item) => acc + item.price,
-  //     0
-  //   );
-  //   const total = bun ? bun.price * 2 + ingredientsPrice : ingredientsPrice;
-  //   setTotalPrice(total);
+  const totalPrice = useMemo(() => {
+    let price = ingredients.reduce((acc, el) => acc + el.price, 0);
+    if (bun) {
+      price += 2 * bun.price;
+    }
+    return price;
   }, [bun, ingredients]);
 
      const [, drop] = useDrop(() => ({
       accept: 'ingredient',
-      drop(ingredient) {dispatch(addIngredient())},
+      drop(ingredient) {
+        if (ingredient.type !== "bun") {
+          dispatch(addIngredient(ingredient));
+        } else {
+          dispatch(setBun(ingredient));
+        }
+      },
     }))
 
   return (
@@ -84,7 +71,7 @@ function BurgerConstructor() {
           Добавьте понравившиеся ингредиенты
             <li className={`${burgerConstructor.item} mb-4 mr-2`}>
           {ingredients.map((item, index) => (
-              <BurgerIngredient key={index} item={item} />
+              <BurgerIngredient key={item.key} item={item} index={index}/>
               ))}
             </li>
           <div className={`${burgerConstructor.bottom} mt-4 mr-4`}>
@@ -108,13 +95,13 @@ function BurgerConstructor() {
             htmlType='button'
             type='primary'
             size='medium'
-            onClick={createOrder}
+            onClick={handleCreateOrder}
           >
             Оформить заказ
           </Button>
         </div>
       </section>
-      {isModalOpen && (
+      {order && (
         <Modal onClose={closeModal}>
           <OrderDetails />
         </Modal>
@@ -122,10 +109,5 @@ function BurgerConstructor() {
     </>
   );
 }
-
-
-BurgerConstructor.propTypes = {
-  ingredients: ingredientArrayType,
-};
 
 export default BurgerConstructor;
