@@ -3,14 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 export const detailsSlice = createSlice({
     name: 'details',
     initialState: {
-        ingredientDetails: [],
+        ingredientDetails: null,
     },
     reducers: {
-        getIngredientDetails: (state, action) => {
+        setIngredientDetails: (state, action) => {
             state.ingredientDetails = action.payload;
         },
     },
 });
 
-export const { getIngredientDetails } = detailsSlice.actions;
+export const { setIngredientDetails } = detailsSlice.actions;
 export default detailsSlice.reducer;
