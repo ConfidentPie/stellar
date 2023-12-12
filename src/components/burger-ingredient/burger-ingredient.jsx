@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { removeIngredient } from '../../services/burger-constructor/burger-constructor-slice';
 import { useDrag, useDrop } from 'react-dnd';
 
-const BurgerIngredient = ({ item, index }) => {
+const BurgerIngredient = ({ item, index, sortIngredients  }) => {
   const dispatch = useDispatch();
   const ref = useRef(null);
 
@@ -18,9 +18,10 @@ const BurgerIngredient = ({ item, index }) => {
     dispatch(removeIngredient(item.key));
   };
 
+
   const [, drop] = useDrop({
     accept: 'sort',
-    hover(item, monitor) {
+    hover: (item, monitor) => {
       const dragIndex = item.index;
       const hoverIndex = index;
 
@@ -40,7 +41,7 @@ const BurgerIngredient = ({ item, index }) => {
         return;
       }
 
-      // dispatch(sortIngredients({dragIndex, hoverIndex});
+      sortIngredients({dragIndex, hoverIndex});
       item.index = hoverIndex;
     },
   });
@@ -56,15 +57,17 @@ const BurgerIngredient = ({ item, index }) => {
   drag(drop(ref));
 
   return (
-    <li className={burgersIngredient.item} style={{opacity: isDragging? 0 : 1}} ref={ref}>
+    <li className={burgersIngredient.item} style={{opacity: isDragging? 0 : 1}} >
+
+      <div className={`${burgersIngredient.info} ml-2`} ref={ref}>
       <DragIcon />
-      <div className={`${burgersIngredient.info} ml-2`}>
         {item && (
           <ConstructorElement
             text={item.name}
             price={item.price}
             thumbnail={item.image}
             handleClose={handleDeleteItem}
+
           />
         )}
       </div>

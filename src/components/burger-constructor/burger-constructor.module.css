@@ -3,7 +3,7 @@
   max-height: 100vh;
 }
 
-.list {
+.item {
   width: 100%;
   max-width: 536px;
   max-height: 464px;
@@ -16,9 +16,10 @@
   list-style: none;
   text-align: center;
   justify-content: center;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
+  overflow-x: hidden;
   border-radius: var(--common-border-radius-s);
-  background: var(--background-element);
+  /* background: var(--background-element); */
   font-family: 'Jet Brains Mono';
   font-size: 16px;
   line-height: 24px;
@@ -27,7 +28,7 @@
   box-sizing: border-box;
 }
 
-.item {
+/* .item {
   margin-right: 8px;
   display: flex;
   position: relative;
@@ -35,7 +36,7 @@
   align-items: center;
   gap: 8px;
 
-}
+} */
 
 .top,
 .bottom {

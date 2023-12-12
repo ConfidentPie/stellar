@@ -26,9 +26,15 @@ export const burgerConstructorSlice = createSlice({
         removeIngredient: (state, action) => {
             state.chosenIngredients = state.chosenIngredients.filter(i => i.key !== action.payload);
         },
+        sortIngredients: (state, action) => {
+            const {dragIndex, hoverIndex} = action.payload;
+            const dragIngredient = state.chosenIngredients[dragIndex];
+            state.chosenIngredients.splice(dragIndex, 1);
+            state.chosenIngredients.splice(hoverIndex, 0, dragIngredient);
+        }
     },
 })
     ;
 
-export const {setBun, clearBurger, addIngredient, removeIngredient} = burgerConstructorSlice.actions;
+export const {setBun, clearBurger, addIngredient, removeIngredient, sortIngredients} = burgerConstructorSlice.actions;
 export default burgerConstructorSlice.reducer;

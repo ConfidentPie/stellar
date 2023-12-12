@@ -11,7 +11,7 @@ import {
 import BurgerIngredient from '../burger-ingredient/burger-ingredient';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setBun, addIngredient, clearBurger } from '../../services/burger-constructor/burger-constructor-slice';
+import { setBun, addIngredient, clearBurger, sortIngredients } from '../../services/burger-constructor/burger-constructor-slice';
 import { selectBun, selectIngredients } from '../../services/burger-constructor/selectors';
 import { createOrder } from '../../services/order/actions';
 import { selectOrder } from '../../services/order/selectors';
@@ -52,10 +52,14 @@ function BurgerConstructor() {
       },
     }))
 
+  const  setIngredientsOrder = (dragIndex, hoverIndex) => {
+    dispatch(sortIngredients(dragIndex, hoverIndex));
+  }
+
   return (
     <>
-      <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`} >
-        <ul className={`${burgerConstructor.list} custom-scroll`} ref={drop}>
+      <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}ref={drop}>
+        <ul className={`${burgerConstructor.list}`}>
         <div className={`${burgerConstructor.top} mb-4 mr-4`} >
           {bun && (
             <ConstructorElement
@@ -67,9 +71,10 @@ function BurgerConstructor() {
             />
           )}
         </div>
-            <div className={`${burgerConstructor.item} mb-4 mr-2`}>
+            <div className={`${burgerConstructor.item} mb-4 mr-2 custom-scroll`} style={{ background: ingredients.length !== 0 ? 'transperent' : '' }} >
+            { ingredients.length === 0 ? 'Перетащите ингредиент сюда' : null}
           {ingredients.map((item, index) => (
-              <BurgerIngredient key={item.key} item={item} index={index}/>
+              <BurgerIngredient key={item.key} item={item} index={index} sortIngredients={setIngredientsOrder} />
               ))}
             </div>
           <div className={`${burgerConstructor.bottom} mt-4 mr-4`}>

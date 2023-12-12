@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ingredientArrayType } from '../../utils/prop-types';
+
 import burgerIngredients from './burger-ingredients.module.css';
 import IngredientsGroup from '../ingredients-group/ingredients-group';
 import Tabs from '../tabs/tabs';
@@ -69,9 +69,5 @@ function BurgerIngredients() {
     </>
   );
 }
-
-BurgerIngredients.propTypes={
-  ingredients: ingredientArrayType
-};
 
 export default BurgerIngredients;
