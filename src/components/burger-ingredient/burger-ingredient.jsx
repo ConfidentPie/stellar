@@ -59,7 +59,7 @@ const BurgerIngredient = ({ item, index, sortIngredients  }) => {
   return (
     <li className={burgersIngredient.item} style={{opacity: isDragging? 0 : 1}} >
 
-      <div className={`${burgersIngredient.info} ml-2`} ref={ref}>
+      <div className={`${burgersIngredient.info}  ml-2`} ref={ref}>
       <DragIcon />
         {item && (
           <ConstructorElement

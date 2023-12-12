@@ -58,10 +58,9 @@ function BurgerConstructor() {
 
   return (
     <>
-      <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}ref={drop}>
-        <ul className={`${burgerConstructor.list}`}>
-        <div className={`${burgerConstructor.top} mb-4 mr-4`} >
-          {bun && (
+      <section className={`${burgerConstructor.container} pt-25 pl-4 pr-4`} ref={drop}>
+        <div className={`${burgerConstructor.top} ml-9`} >
+          {bun &&  (
             <ConstructorElement
               type='top'
               isLocked={true}
@@ -71,13 +70,14 @@ function BurgerConstructor() {
             />
           )}
         </div>
-            <div className={`${burgerConstructor.item} mb-4 mr-2 custom-scroll`} style={{ background: ingredients.length !== 0 ? 'transperent' : '' }} >
+            <ul className={`${burgerConstructor.item} mr-2 custom-scroll`}
+            style={{ background: ingredients.length !== 0 ? 'transperent' : '' }} >
             { ingredients.length === 0 ? 'Перетащите ингредиент сюда' : null}
           {ingredients.map((item, index) => (
               <BurgerIngredient key={item.key} item={item} index={index} sortIngredients={setIngredientsOrder} />
               ))}
-            </div>
-          <div className={`${burgerConstructor.bottom} mt-4 mr-4`}>
+            </ul>
+          <div className={`${burgerConstructor.bottom} ml-9`}>
           {bun && (
             <ConstructorElement
               type='bottom'
@@ -88,7 +88,7 @@ function BurgerConstructor() {
             />
           )}
         </div>
-        </ul>
+
         <div className={`${burgerConstructor.total} mt-10`} >
           <p className='text text_type_digits-medium mr-10'>
             {totalPrice} <CurrencyIcon type='primary' />
