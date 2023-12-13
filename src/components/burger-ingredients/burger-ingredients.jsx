@@ -1,6 +1,12 @@
 // В компоненте BurgerIngredients
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+} from 'react';
 import burgerIngredients from './burger-ingredients.module.css';
 import IngredientsGroup from '../ingredients-group/ingredients-group';
 import Tabs from '../tabs/tabs';
@@ -8,6 +14,38 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIngredients } from '../../services/burger-ingredients/selectors';
+// import { useInView } from 'react-intersection-observer';
+
+const useTopId = () => {
+  const listRef = useRef();
+  const items = useRef({});
+  const [topId, setTopId] = useState('');
+
+  const itemsRef = useCallback(
+    (el) => {
+      if (el) items.current[el.id] = el;
+    },
+    [items]
+  );
+
+  const onScroll = useCallback(() => {
+    const listTop = listRef.current.getBoundingClientRect().top;
+    let id = '';
+    let minDiff = Number.MAX_VALUE;
+    for (let item in items.current) {
+      const diff = Math.abs(
+        items.current[item].getBoundingClientRect().top - listTop
+      );
+      if (diff >= 0 && minDiff > diff) {
+        minDiff = diff;
+        id = items.current[item].id;
+      }
+    }
+    if (id && id !== topId) setTopId(id);
+  }, [topId]);
+
+  return { listRef, itemsRef, onScroll, topId };
+};
 
 function BurgerIngredients() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -42,6 +80,28 @@ function BurgerIngredients() {
     setCurrentTab(tabValue);
     scrollToSection(tabValue);
   };
+
+  // const [bunRef, inViewBuns] = useInView({
+  //   threshold: 0,
+  // });
+
+  // const [sauceRef, inViewSauce] = useInView({
+  //   threshold: 0,
+  // });
+
+  // const [mainRef, inViewMain] = useInView({
+  //   threshold: 0,
+  // });
+
+  // useEffect(() => {
+  //   if (inViewBuns) {
+  //     setCurrentTab('buns');
+  //   } else if (inViewSauce) {
+  //     setCurrentTab('sauce');
+  //   } else if (inViewMain) {
+  //     setCurrentTab('main');
+  //   }
+  // }, [inViewBuns, inViewSauce, inViewMain]);
 
   const scrollToSection = (section) => {
     switch (section) {
@@ -90,6 +150,19 @@ function BurgerIngredients() {
     };
   }, []);
 
+  const { listRef, itemsRef, onScroll, topId } = useTopId();
+  useEffect(() => {
+    if (topId) setCurrentTab(topId);
+  }, [topId]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [onScroll]);
+
   return (
     <>
       <section className={burgerIngredients.container}>
@@ -97,22 +170,22 @@ function BurgerIngredients() {
           Соберите бургер
         </h2>
         <Tabs currentTab={currentTab} onTabClick={handleTabClick} />
-        <div className={`${burgerIngredients.list} custom-scroll`}>
-          <div className={burgerIngredients.group} ref={bunRef}>
+        <div className={`${burgerIngredients.list} custom-scroll`} ref={listRef}>
+          <div className={burgerIngredients.group} id='buns' ref={bunRef}>
             <IngredientsGroup
               title='Булки'
               ingredients={groupedIngredients.bun || []}
               onCardClick={handleOpenModal}
             />
           </div>
-          <div className={burgerIngredients.group} ref={sauceRef}>
+          <div className={burgerIngredients.group} id='sauce' ref={sauceRef}>
             <IngredientsGroup
               title='Соусы'
               ingredients={groupedIngredients.sauce || []}
               onCardClick={handleOpenModal}
             />
           </div>
-          <div className={burgerIngredients.group} ref={mainRef}>
+          <div className={burgerIngredients.group} id='main' ref={mainRef}>
             <IngredientsGroup
               title='Ингредиенты'
               ingredients={groupedIngredients.main || []}
