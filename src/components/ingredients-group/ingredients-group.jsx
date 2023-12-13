@@ -8,16 +8,16 @@ import { ingredientArrayType } from '../../utils/prop-types';
 const IngredientsGroup = ({ title, ingredients, onCardClick }) => {
 
     return (
-      <div className='mb-10'>
+      <>
         <h2 className={`${ingredientsGroup.title} mb-6`}>{title}</h2>
-        <ul className={ingredientsGroup.list}>
+        <ul className={`${ingredientsGroup.list} mb-10`}>
           {ingredients.map(ingredient => (
             <li key={ingredient._id}>
               <IngredientCard ingredient={ingredient} onCardClick={onCardClick}/>
             </li>
           ))}
         </ul>
-      </div>
+      </>
     );
   };
 
