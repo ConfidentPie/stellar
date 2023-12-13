@@ -1,5 +1,3 @@
-// В компоненте BurgerIngredients
-
 import React, {
   useState,
   useMemo,
