@@ -117,36 +117,28 @@ function BurgerIngredients() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const bunRect = bunRef.current.getBoundingClientRect();
-      const sauceRect = sauceRef.current.getBoundingClientRect();
-      const mainRect = mainRef.current.getBoundingClientRect();
+  const handleScroll = () => {
+    const bunRect = bunRef.current.getBoundingClientRect();
+    const sauceRect = sauceRef.current.getBoundingClientRect();
+    const mainRect = mainRef.current.getBoundingClientRect();
 
-      if (
-        bunRect.top <= window.innerHeight / 2 &&
-        bunRect.bottom >= window.innerHeight / 2
-      ) {
-        setCurrentTab('buns');
-      } else if (
-        sauceRect.top <= window.innerHeight / 2 &&
-        sauceRect.bottom >= window.innerHeight / 2
-      ) {
-        setCurrentTab('sauce');
-      } else if (
-        mainRect.top <= window.innerHeight / 2 &&
-        mainRect.bottom >= window.innerHeight / 2
-      ) {
-        setCurrentTab('main');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    if (
+      bunRect.top <= window.innerHeight / 2 &&
+      bunRect.bottom >= window.innerHeight / 2
+    ) {
+      setCurrentTab('buns');
+    } else if (
+      sauceRect.top <= window.innerHeight / 2 &&
+      sauceRect.bottom >= window.innerHeight / 2
+    ) {
+      setCurrentTab('sauce');
+    } else if (
+      mainRect.top <= window.innerHeight / 2 &&
+      mainRect.bottom >= window.innerHeight / 2
+    ) {
+      setCurrentTab('main');
+    }
+  };
 
   const { listRef, itemsRef, onScroll, topId } = useTopId();
   useEffect(() => {
@@ -168,7 +160,11 @@ function BurgerIngredients() {
           Соберите бургер
         </h2>
         <Tabs currentTab={currentTab} onTabClick={handleTabClick} />
-        <div className={`${burgerIngredients.list} custom-scroll`} ref={listRef}>
+        <div
+          className={`${burgerIngredients.list} custom-scroll`}
+          ref={listRef}
+          onScroll={handleScroll}
+        >
           <div className={burgerIngredients.group} id='buns' ref={bunRef}>
             <IngredientsGroup
               title='Булки'
