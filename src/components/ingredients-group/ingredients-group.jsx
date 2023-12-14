@@ -13,7 +13,7 @@ const IngredientsGroup = ({ title, ingredients, onCardClick }) => {
         <ul className={`${ingredientsGroup.list} mb-10`}>
           {ingredients.map(ingredient => (
             <li key={ingredient._id}>
-              <IngredientCard ingredient={ingredient} onCardClick={onCardClick}/>
+              <IngredientCard ingredient={ingredient} onCardClick={onCardClick} игт/>
             </li>
           ))}
         </ul>
