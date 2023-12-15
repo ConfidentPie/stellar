@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Header from '../app-header/app-header';
 import './app.css';
 
@@ -27,14 +27,14 @@ function App() {
           <p>Магия...</p>
         ) : error ? (
           <p>Не удалось загрузить ингредиенты: {error}</p>
-        ) : (
+        ) : ingredients.length > 0 ? (
           <>
             <DndProvider backend={HTML5Backend}>
               <BurgerIngredients />
               <BurgerConstructor />
             </DndProvider>
           </>
-        )}
+        ) : (<p>Не удалось получить ингредиенты</p>)}
       </main>
     </div>
   );

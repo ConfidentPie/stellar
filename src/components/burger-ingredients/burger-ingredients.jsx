@@ -12,7 +12,6 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIngredients } from '../../services/burger-ingredients/selectors';
-// import { useInView } from 'react-intersection-observer';
 
 const useTopId = () => {
   const listRef = useRef();
@@ -56,6 +55,7 @@ function BurgerIngredients() {
   const bunRef = useRef(null);
   const sauceRef = useRef(null);
   const mainRef = useRef(null);
+  const tabsRef = useRef(null);
 
   const groupedIngredients = useMemo(() => {
     return ingredients.reduce((acc, ingredient) => {

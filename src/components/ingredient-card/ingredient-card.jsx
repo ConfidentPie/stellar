@@ -9,7 +9,7 @@ import {
   Counter
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-const IngredientCard = ({ ingredient, onCardClick, bun, ingredients, item }) => {
+const IngredientCard = ({ ingredient, onCardClick }) => {
   const { name, image, price } = ingredient;
 
   const [{opacity}, dragRef] = useDrag({
@@ -24,23 +24,9 @@ const IngredientCard = ({ ingredient, onCardClick, bun, ingredients, item }) => 
     onCardClick(ingredient);
   };
 
-  function useCounter(bun, ingredients, item) {
-    const count = useMemo(
-      () =>
-        bun && bun._id === item._id
-          ? 2
-          : ingredients && item && [...ingredients].filter((elem) => elem._id === item?._id).length,
-
-      [bun, ingredients, item],
-    );
-    return count;
-  }
-
-  const count = useCounter(bun, ingredients, item);
-
   return (
     <div className={ingredientCard.card} onClick={handleClick} ref={dragRef} style={{opacity}}>
-      {count > 0 && <Counter count={count} size="default" extraClass="m-1" />}
+      <Counter count={'1'} size="default" extraClass="m-1" />
       <img className='pl-4 pr-4' src={image} alt={name} />
       <span className={`${ingredientCard.price} pb-1 pt-1`}>
         <p className='text text_type_digits-default mr-2 mt-1 mb-1'>

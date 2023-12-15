@@ -83,7 +83,7 @@ function BurgerConstructor() {
         </div>
         <ul
           className={`${burgerConstructor.item} mr-2 custom-scroll`}
-          style={{ background: ingredients.length !== 0 ? 'transperent' : '' }}
+          style={{ background: ingredients.length !== 0 ? 'transparent' : '' }}
         >
           {ingredients.length === 0 ? 'Перетащите ингредиент сюда' : null}
           {ingredients.map((item, index) => (
