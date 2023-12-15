@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import ingredientCard from './ingredient-card.module.css';
 import { ingredientType } from '../../utils/prop-types';
 import { useDrag } from 'react-dnd';
@@ -9,7 +9,7 @@ import {
   Counter
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-const IngredientCard = ({ ingredient, onCardClick }) => {
+const IngredientCard = ({ ingredient, onCardClick, count }) => {
   const { name, image, price } = ingredient;
 
   const [{opacity}, dragRef] = useDrag({
@@ -26,7 +26,7 @@ const IngredientCard = ({ ingredient, onCardClick }) => {
 
   return (
     <div className={ingredientCard.card} onClick={handleClick} ref={dragRef} style={{opacity}}>
-      <Counter count={'1'} size="default" extraClass="m-1" />
+      {count > 0 && <Counter count={count} size="default" extraClass="m-1" />}
       <img className='pl-4 pr-4' src={image} alt={name} />
       <span className={`${ingredientCard.price} pb-1 pt-1`}>
         <p className='text text_type_digits-default mr-2 mt-1 mb-1'>
