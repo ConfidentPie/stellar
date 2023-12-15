@@ -3,5 +3,5 @@ import { getIngredients } from '../../utils/burger-api';
 
 export const loadIngredients = createAsyncThunk(
     "burger-ingredients/loadIngredients",
-    async () => getIngredients()
+    getIngredients()
 );

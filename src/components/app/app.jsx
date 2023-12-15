@@ -28,12 +28,10 @@ function App() {
         ) : error ? (
           <p>Не удалось загрузить ингредиенты: {error}</p>
         ) : ingredients.length > 0 ? (
-          <>
             <DndProvider backend={HTML5Backend}>
               <BurgerIngredients />
               <BurgerConstructor />
             </DndProvider>
-          </>
         ) : (<p>Не удалось получить ингредиенты</p>)}
       </main>
     </div>
