@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../app-header/app-header';
-import './app.css';
+import appStyles from './app.module.css';
 
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
@@ -20,9 +20,9 @@ function App() {
     }, [dispatch]);
 
   return (
-    <div className='App'>
+    <div className={appStyles.app}>
       <Header />
-      <main className='main'>
+      <main className={appStyles.main}>
       {loading ? (
           <p>Магия...</p>
         ) : error ? (

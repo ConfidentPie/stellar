@@ -5,7 +5,7 @@ import React, {
   useRef,
   useCallback,
 } from 'react';
-import burgerIngredients from './burger-ingredients.module.css';
+import burgerIngredientsStyles from './burger-ingredients.module.css';
 import IngredientsGroup from '../ingredients-group/ingredients-group';
 import Tabs from '../tabs/tabs';
 import Modal from '../modal/modal';
@@ -55,7 +55,6 @@ function BurgerIngredients() {
   const bunRef = useRef(null);
   const sauceRef = useRef(null);
   const mainRef = useRef(null);
-  const tabsRef = useRef(null);
 
   const groupedIngredients = useMemo(() => {
     return ingredients.reduce((acc, ingredient) => {
@@ -140,7 +139,7 @@ function BurgerIngredients() {
     }
   };
 
-  const { listRef, itemsRef, onScroll, topId } = useTopId();
+  const { listRef, onScroll, topId } = useTopId();
   useEffect(() => {
     if (topId) setCurrentTab(topId);
   }, [topId]);
@@ -154,32 +153,31 @@ function BurgerIngredients() {
   }, [onScroll]);
 
   return (
-    <>
-      <section className={burgerIngredients.container}>
+      <section className={burgerIngredientsStyles.container}>
         <h2 className='text text_type_main-large pt-10 mb-5 pl-5'>
           Соберите бургер
         </h2>
         <Tabs currentTab={currentTab} onTabClick={handleTabClick} />
         <div
-          className={`${burgerIngredients.list} custom-scroll`}
+          className={`${burgerIngredientsStyles.list} custom-scroll`}
           ref={listRef}
           onScroll={handleScroll}
         >
-          <div className={burgerIngredients.group} id='buns' ref={bunRef}>
+          <div className={burgerIngredientsStyles.group} id='buns' ref={bunRef}>
             <IngredientsGroup
               title='Булки'
               ingredients={groupedIngredients.bun || []}
               onCardClick={handleOpenModal}
             />
           </div>
-          <div className={burgerIngredients.group} id='sauce' ref={sauceRef}>
+          <div className={burgerIngredientsStyles.group} id='sauce' ref={sauceRef}>
             <IngredientsGroup
               title='Соусы'
               ingredients={groupedIngredients.sauce || []}
               onCardClick={handleOpenModal}
             />
           </div>
-          <div className={burgerIngredients.group} id='main' ref={mainRef}>
+          <div className={burgerIngredientsStyles.group} id='main' ref={mainRef}>
             <IngredientsGroup
               title='Ингредиенты'
               ingredients={groupedIngredients.main || []}
@@ -187,13 +185,12 @@ function BurgerIngredients() {
             />
           </div>
         </div>
+        {isModalOpen && (
+          <Modal onClose={closeModal}>
+            <IngredientDetails ingredient={choosenIngredient} />
+          </Modal>
+        )}
       </section>
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <IngredientDetails ingredient={choosenIngredient} />
-        </Modal>
-      )}
-    </>
   );
 }
 

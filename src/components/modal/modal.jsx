@@ -1,7 +1,7 @@
 import React, { useEffect  } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import modal from './modal.module.css';
+import modalStyles from './modal.module.css';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -25,10 +25,10 @@ const Modal = ({ children, onClose }) => {
     <>
       <ModalOverlay onClose={onClose} />
       <div
-        className={modal.content}
+        className={modalStyles.content}
       >
         <button
-          className={`${modal.close__button} mt-15 mr-10`}
+          className={`${modalStyles.close__button} mt-15 mr-10`}
           onClick={onClose}
         >
           <CloseIcon type='primary' />

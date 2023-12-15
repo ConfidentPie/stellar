@@ -1,6 +1,6 @@
 import React from 'react';
 
-import appHeader from './app-header.module.css';
+import appHeaderStyles from './app-header.module.css';
 import {
     BurgerIcon,
     ListIcon,
@@ -11,18 +11,18 @@ import {
 
 function Header() {
     return (
-      <header className={`${appHeader.header} pb-4 pt-4 mt-10`}>
-        <section className={appHeader.container}>
-          <nav className={appHeader.nav}>
-              <ul className={appHeader.list}>
-                  <li className={appHeader.item}>
-                      <a className={`${appHeader.link} text text_type_main-small pt-4 pb-4 pl-5 pr-5`} href='/'>
+      <header className={`${appHeaderStyles.header} pb-4 pt-4 mt-10`}>
+        <section className={appHeaderStyles.container}>
+          <nav className={appHeaderStyles.nav}>
+              <ul className={appHeaderStyles.list}>
+                  <li className={appHeaderStyles.item}>
+                      <a className={`${appHeaderStyles.link} text text_type_main-small pt-4 pb-4 pl-5 pr-5`} href='/'>
                       <BurgerIcon type='primary'/>
                       <span className='pl-2 '>Конструктор</span>
                       </a>
                   </li>
-                  <li className={appHeader.item}>
-                      <a className={`${appHeader.link} ${appHeader.active}  text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
+                  <li className={appHeaderStyles.item}>
+                      <a className={`${appHeaderStyles.link} ${appHeaderStyles.active}  text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
                       <ListIcon type='secondary'/>
                       <span className='pl-2'>Лента заказов</span>
                       </a>
@@ -30,8 +30,8 @@ function Header() {
               </ul>
           </nav>
           <Logo />
-          <nav className={appHeader.user}>
-              <a className={`${appHeader.link}  ${appHeader.active} text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
+          <nav className={appHeaderStyles.user}>
+              <a className={`${appHeaderStyles.link}  ${appHeaderStyles.active} text text_type_main-small  pt-4 pb-4 pl-5 pr-5`} href='/'>
                 <ProfileIcon type='secondary'/>
                 <span className='pl-2'>Личный кабинет</span>
               </a>

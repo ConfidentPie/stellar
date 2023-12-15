@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import burgerConstructor from './burger-constructor.module.css';
+import burgerConstructorStyles from './burger-constructor.module.css';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import { useDrop } from 'react-dnd';
@@ -30,10 +30,20 @@ function BurgerConstructor() {
   const bun = useSelector(selectBun);
   const ingredients = useSelector(selectIngredients);
   const dispatch = useDispatch();
+  const [isOrderButtonActive, setOrderButtonActive] = useState(false);
+
+  useEffect(() => {
+    const hasBun = bun !== null;
+    const hasIngredients = ingredients.length > 0;
+
+    setOrderButtonActive(hasBun && hasIngredients);
+  }, [bun, ingredients]);
 
   const handleCreateOrder = () => {
-    const ingredientIds = ingredients.map((ingredient) => ingredient._id);
-    dispatch(createOrder(ingredientIds));
+    if (isOrderButtonActive) {
+      const ingredientIds = ingredients.map((ingredient) => ingredient._id);
+      dispatch(createOrder(ingredientIds));
+    }
   };
 
   const closeModal = () => {
@@ -67,10 +77,10 @@ function BurgerConstructor() {
   return (
     <>
       <section
-        className={`${burgerConstructor.container} pt-25 pl-4 pr-4`}
+        className={`${burgerConstructorStyles.container} pt-25 pl-4 pr-4`}
         ref={drop}
       >
-        <div className={`${burgerConstructor.top} ml-9`}>
+        <div className={`${burgerConstructorStyles.top} ml-9`}>
           {bun && (
             <ConstructorElement
               type='top'
@@ -82,7 +92,7 @@ function BurgerConstructor() {
           )}
         </div>
         <ul
-          className={`${burgerConstructor.item} mr-2 custom-scroll`}
+          className={`${burgerConstructorStyles.item} mr-2 custom-scroll`}
           style={{ background: ingredients.length !== 0 ? 'transparent' : '' }}
         >
           {ingredients.length === 0 ? 'Перетащите ингредиент сюда' : null}
@@ -95,7 +105,7 @@ function BurgerConstructor() {
             />
           ))}
         </ul>
-        <div className={`${burgerConstructor.bottom} ml-9`}>
+        <div className={`${burgerConstructorStyles.bottom} ml-9`}>
           {bun && (
             <ConstructorElement
               type='bottom'
@@ -107,7 +117,7 @@ function BurgerConstructor() {
           )}
         </div>
 
-        <div className={`${burgerConstructor.total} mt-10`}>
+        <div className={`${burgerConstructorStyles.total} mt-10`}>
           <p className='text text_type_digits-medium mr-10'>
             {totalPrice} <CurrencyIcon type='primary' />
           </p>
@@ -116,6 +126,7 @@ function BurgerConstructor() {
             type='primary'
             size='medium'
             onClick={handleCreateOrder}
+            disabled={!isOrderButtonActive}
           >
             Оформить заказ
           </Button>

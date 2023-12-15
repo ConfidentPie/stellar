@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import burgersIngredient from './burger-ingredient.module.css';
+import burgersIngredientStyles from './burger-ingredient.module.css';
 import {
   ConstructorElement,
   DragIcon,
@@ -57,9 +57,9 @@ const BurgerIngredient = ({ item, index, sortIngredients  }) => {
   drag(drop(ref));
 
   return (
-    <li className={burgersIngredient.item} style={{opacity: isDragging? 0 : 1}} >
+    <li className={burgersIngredientStyles.item} style={{opacity: isDragging? 0 : 1}} >
 
-      <div className={`${burgersIngredient.info}  ml-2`} ref={ref}>
+      <div className={`${burgersIngredientStyles.info}  ml-2`} ref={ref}>
       <DragIcon />
         {item && (
           <ConstructorElement
@@ -77,7 +77,7 @@ const BurgerIngredient = ({ item, index, sortIngredients  }) => {
 
 
 
-burgersIngredient.propTypes = {
+BurgerIngredient.propTypes = {
   item: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
 };
