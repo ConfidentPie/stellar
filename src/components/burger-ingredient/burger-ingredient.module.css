@@ -1,5 +1,9 @@
 .item {
-    width: 100%;
+    flex-direction: row;
+}
+
+.info {
+    width: 98%;
     margin-right: 8px;
     display: flex;
     position: relative;
